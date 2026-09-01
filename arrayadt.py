@@ -1,7 +1,6 @@
 import datetime
 
 class Array:
-    """Implementación base de la estructura de datos ADT Array."""
     def __init__(self, tamano):
         self.__tamano = tamano
         self.__datos = [None for _ in range(self.__tamano)]
@@ -23,7 +22,6 @@ class Array:
 
 
 class _IteradorArray:
-    """Iterador auxiliar para recorrer la clase Array."""
     def __init__(self, datos):
         self.__datos = datos
         self.__indice = 0
@@ -40,7 +38,6 @@ class _IteradorArray:
 
 
 class Empleado:
-    """Encapsula los datos de un trabajador."""
     def __init__(self, num, nombres, paterno, materno, horas_extra, sueldo_base, anio_ingreso):
         self.num = int(num)
         self.nombres = nombres
@@ -51,9 +48,6 @@ class Empleado:
         self.anio_ingreso = int(anio_ingreso)
 
     def calcular_sueldo(self, anio_actual=2026):
-        # Reglas de negocio:
-        # 1. Hora extra = $276.5
-        # 2. Antigüedad = 3% del sueldo base por cada año laborado
         antiguedad = anio_actual - self.anio_ingreso
         pago_horas_extra = self.horas_extra * 276.5
         prestacion_antiguedad = self.sueldo_base * (0.03 * antiguedad)
@@ -61,12 +55,10 @@ class Empleado:
 
 
 class NominaADT:
-    """ADT personalizado sobre el ADT Array para administrar los empleados."""
     def __init__(self, ruta_archivo):
         with open(ruta_archivo, 'r', encoding='utf-8') as archivo:
             lineas = [linea.strip() for linea in archivo if linea.strip()]
 
-        # La primera línea corresponde a los encabezados
         self.__empleados = Array(len(lineas) - 1)
 
         for i in range(1, len(lineas)):
@@ -113,9 +105,7 @@ class NominaADT:
             print(f"{emp.num:<6} | {nombre_completo:<32} | {emp.horas_extra:<7} | {emp.anio_ingreso:<7} | ${sueldo_total:,.2f}")
 
 
-# Execución del programa
 if __name__ == "__main__":
-    # Nombre del archivo con los datos
     archivo_datos = "junio.dat"
 
     # Instanciación y ejecución del ADT
